@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Mail, Phone, Globe } from 'lucide-react';
+import { MapPin, Mail, Phone, Globe, MessageCircle } from 'lucide-react';
 
 export default function ContactPage() {
     return (
@@ -96,6 +96,7 @@ export default function ContactPage() {
                                 <h3 className="text-sm font-black text-ghost uppercase tracking-widest mb-4">Encrypted Comms</h3>
 
                                 <div className="flex flex-col gap-4">
+                                    {/* Email */}
                                     <div className="flex items-center gap-4 pb-4 border-b border-white/10">
                                         <Mail className="w-5 h-5 text-steel-light/50" />
                                         <a href="mailto:adama@sremgya.com" className="text-ghost text-lg font-medium hover:text-gold transition-colors">
@@ -103,6 +104,20 @@ export default function ContactPage() {
                                         </a>
                                     </div>
 
+                                    {/* WhatsApp */}
+                                    <div className="flex items-center gap-4 pb-4 border-b border-white/10">
+                                        <MessageCircle className="w-5 h-5 text-steel-light/50" />
+                                        <a
+                                            href="https://wa.me/12029251041"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-ghost text-lg font-medium hover:text-gold transition-colors flex items-center gap-2"
+                                        >
+                                            +1 (202) 925-1041 <span className="text-[10px] font-bold text-steel-light/50 uppercase tracking-widest mt-1">(WhatsApp)</span>
+                                        </a>
+                                    </div>
+
+                                    {/* US Phone */}
                                     <div className="flex items-center gap-4 pb-4 border-b border-white/10">
                                         <Phone className="w-5 h-5 text-steel-light/50" />
                                         <a href="tel:+14433924444" className="text-ghost text-lg font-medium hover:text-gold transition-colors">
@@ -110,6 +125,7 @@ export default function ContactPage() {
                                         </a>
                                     </div>
 
+                                    {/* Ghana Phone */}
                                     <div className="flex items-center gap-4">
                                         <Phone className="w-5 h-5 text-steel-light/50" />
                                         <a href="tel:+233248393310" className="text-ghost text-lg font-medium hover:text-gold transition-colors">
