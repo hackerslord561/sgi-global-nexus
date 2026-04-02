@@ -57,16 +57,30 @@ export default function ContactPage() {
                         transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
                         className="flex flex-col gap-8"
                     >
-                        {/* HQ Card */}
+                        {/* Multi-Node Location Card */}
                         <div className="flex items-start gap-6 p-8 md:p-10 bg-white border border-navy-900/10 rounded-[2rem] shadow-xl hover:shadow-2xl transition-all duration-300 group">
                             <div className="w-14 h-14 bg-navy-900/5 group-hover:bg-navy-900 group-hover:text-gold text-navy-900 rounded-2xl flex items-center justify-center shrink-0 transition-colors duration-300">
                                 <MapPin className="w-6 h-6" />
                             </div>
-                            <div>
-                                <h3 className="text-sm font-black text-navy-900 uppercase tracking-widest mb-3">Global Headquarters</h3>
-                                <p className="text-navy-900 text-lg font-bold">SG International Ltd.</p>
-                                <p className="text-navy-800/70 text-md font-medium mt-1">10 Parsnip St, East Legon</p>
-                                <p className="text-navy-800/70 text-md font-medium">Accra, Ghana</p>
+                            <div className="w-full">
+                                <h3 className="text-sm font-black text-navy-900 uppercase tracking-widest mb-6">Operating Locations</h3>
+
+                                <div className="flex flex-col gap-6">
+                                    {/* USA Address */}
+                                    <div className="pb-6 border-b border-navy-900/10">
+                                        <p className="text-navy-900 text-lg font-bold">SG International Ltd.</p>
+                                        <p className="text-navy-800/70 text-md font-medium mt-1">12889 Hoadly Manor Drive</p>
+                                        <p className="text-navy-800/70 text-md font-medium">Virginia 20112, USA</p>
+                                    </div>
+
+                                    {/* Ghana Address */}
+                                    <div>
+                                        <p className="text-navy-900 text-lg font-bold">SG International Ltd.</p>
+                                        <p className="text-navy-800/70 text-md font-medium mt-1">10 Parsnip St, East Legon</p>
+                                        <p className="text-navy-800/70 text-md font-medium">Accra, Ghana</p>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
@@ -91,15 +105,15 @@ export default function ContactPage() {
 
                                     <div className="flex items-center gap-4 pb-4 border-b border-white/10">
                                         <Phone className="w-5 h-5 text-steel-light/50" />
-                                        <a href="tel:+233248393310" className="text-ghost text-lg font-medium hover:text-gold transition-colors">
-                                            +233 24 839 3310
+                                        <a href="tel:+14433924444" className="text-ghost text-lg font-medium hover:text-gold transition-colors">
+                                            +1 443 392 4444
                                         </a>
                                     </div>
 
                                     <div className="flex items-center gap-4">
                                         <Phone className="w-5 h-5 text-steel-light/50" />
-                                        <a href="tel:+14433924444" className="text-ghost text-lg font-medium hover:text-gold transition-colors">
-                                            +1 443 392 4444
+                                        <a href="tel:+233248393310" className="text-ghost text-lg font-medium hover:text-gold transition-colors">
+                                            +233 24 839 3310
                                         </a>
                                     </div>
                                 </div>

@@ -4,7 +4,6 @@ import React from 'react';
 import dynamic from "next/dynamic";
 import { LiveTicker } from "@/components/ui/live-ticker";
 import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
 import { Globe2, Anchor, ShieldCheck } from "lucide-react";
 
 const TrilateralGlobe = dynamic(() => import("@/components/three/trilateral-globe"), {
@@ -118,8 +117,6 @@ export default function Home() {
           </section>
 
         </main>
-
-        <Footer />
       </div>
   );
 }

@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { LiveTicker } from "@/components/ui/live-ticker";
 import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
 import { Radar, LockKeyhole, Satellite, Shield } from "lucide-react";
 
 const NodeNetwork = () => {
@@ -135,8 +134,6 @@ export default function SGISentinel() {
                 </section>
 
             </main>
-
-            <Footer />
         </div>
     );
 }
