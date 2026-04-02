@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CookieBanner } from "@/components/ui/cookie-banner";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -11,30 +12,26 @@ export const metadata: Metadata = {
     authors: [{ name: "Hackerslord Studios", url: "https://hackerslord-portfolio.vercel.app" }],
     creator: "Hackerslord Studios",
 
-    // Google Search & SEO
     robots: {
         index: true,
         follow: true,
     },
 
-    // OpenGraph (Next.js will automatically find your opengraph-image.png in the app folder)
     openGraph: {
         type: "website",
         locale: "en_US",
         url: "https://sgi-global-nexus.vercel.app",
-        siteName: "SGI Global Nexus",
+        siteName: "SG Global Nexus",
         title: "SG International | Global Presence. Sovereign Reliability.",
         description: "Institutional-grade infrastructure bridging Washington D.C., Accra, and Singapore.",
     },
 
-    // Twitter (Next.js will automatically find your twitter-image.png in the app folder)
     twitter: {
         card: "summary_large_image",
         title: "SG International | Global Nexus",
         description: "Sovereign-grade infrastructure and commodity trading cortex.",
     },
 
-    // Favicon mapping
     icons: {
         icon: "/logo.png",
         apple: "/logo.png",
@@ -56,6 +53,8 @@ export default function RootLayout({
         </head>
         <body className="bg-ghost text-navy-900 font-sans antialiased selection:bg-gold/20 selection:text-navy-900 transition-colors duration-300">
         {children}
+        {/* Injected the Global Cookie Protocol */}
+        <CookieBanner />
         </body>
         </html>
     );
