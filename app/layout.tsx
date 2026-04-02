@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
-import { CookieBanner } from "@/components/ui/cookie-banner";
 import "./globals.css";
+
+// Import your global architecture components
+import { LiveTicker } from "@/components/ui/live-ticker";
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
+import { CookieBanner } from "@/components/ui/cookie-banner";
 
 export const metadata: Metadata = {
     title: {
@@ -51,10 +56,25 @@ export default function RootLayout({
                 rel="stylesheet"
             />
         </head>
-        <body className="bg-ghost text-navy-900 font-sans antialiased selection:bg-gold/20 selection:text-navy-900 transition-colors duration-300">
-        {children}
-        {/* Injected the Global Cookie Protocol */}
+        {/* INTENSIVE FIX:
+        Added flex column layout to the body to ensure the footer always pushes to the bottom,
+        even if the page content (like the Energy Desk) is short.
+      */}
+        <body className="bg-ghost text-navy-900 font-sans antialiased selection:bg-gold/20 selection:text-navy-900 transition-colors duration-300 flex flex-col min-h-screen">
+
+        {/* Top-level Global UI */}
+        <LiveTicker />
+        <Navbar />
+
+        {/* Page Content Wrapper */}
+        <main className="flex-grow w-full relative z-10">
+            {children}
+        </main>
+
+        {/* Bottom-level Global UI */}
+        <Footer />
         <CookieBanner />
+
         </body>
         </html>
     );
