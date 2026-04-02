@@ -8,7 +8,6 @@ import {
     ShieldCheck,
     Zap,
     ArrowRightLeft,
-    DollarSign,
     BarChart3
 } from 'lucide-react';
 
@@ -214,20 +213,6 @@ export default function CapitalPage() {
                     {/* The Chart */}
                     <div className="pl-6 md:pl-10">
                         <LiveChart />
-                    </div>
-
-                    {/* Aggregate Total */}
-                    <div className="mt-8 pt-8 border-t border-white/10 flex items-center justify-between relative z-10">
-                        <div>
-                            <p className="text-steel-light/50 text-[10px] font-bold uppercase tracking-widest mb-1">Total Active Deployment</p>
-                            <p className="text-2xl font-mono text-ghost tracking-wider flex items-center gap-1">
-                                <DollarSign className="w-5 h-5 text-gold" />
-                                127,000,000
-                            </p>
-                        </div>
-                        <div className="px-4 py-2 rounded-lg border border-gold/20 bg-gold/5 text-gold text-[10px] font-bold uppercase tracking-widest">
-                            Live Feed
-                        </div>
                     </div>
 
                 </motion.div>
