@@ -1,139 +1,208 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { LiveTicker } from "@/components/ui/live-ticker";
-import { Navbar } from "@/components/layout/navbar";
-import { Radar, LockKeyhole, Satellite, Shield } from "lucide-react";
+import React from 'react';
+// INTENSIVE FIX: Explicitly importing 'Variants' to satisfy strict TypeScript definitions
+import { motion, Variants } from 'framer-motion';
+import {
+    ShieldCheck,
+    MapPin,
+    Globe2,
+    Zap,
+    Sprout,
+    Building2,
+    Anchor
+} from 'lucide-react';
 
-const NodeNetwork = () => {
-    const [mounted, setMounted] = useState(false);
+export default function SentinelPage() {
+    // INTENSIVE FIX: Applying the Variants type lock
+    const containerVariants: Variants = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: { staggerChildren: 0.2 }
+        }
+    };
 
-    useEffect(() => {
-        const timer = setTimeout(() => setMounted(true), 50);
-        return () => clearTimeout(timer);
-    }, []);
-
-    if (!mounted) return null;
-
-    const nodes = Array.from({ length: 12 });
+    const itemVariants: Variants = {
+        hidden: { opacity: 0, y: 20 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+    };
 
     return (
-        <div className="relative w-full h-full min-h-[400px] flex items-center justify-center">
-            <motion.div
-                animate={{ scale: [1, 1.1, 1], opacity: [0.8, 1, 0.8] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center border border-blue-500/40 z-20 backdrop-blur-md"
-            >
-                <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.6)]">
-                    <Satellite className="w-5 h-5 text-white" />
-                </div>
-            </motion.div>
+        <div className="min-h-screen bg-ghost pt-32 pb-24 px-6 lg:px-12 relative overflow-hidden">
 
-            {nodes.map((_, i) => {
-                const radius = 100 + (i * 12);
-                const duration = 15 + (i * 2);
-                const delay = i * 0.5;
+            {/* Background Architectural Grid */}
+            <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
+                 style={{ backgroundImage: 'linear-gradient(#001A38 1px, transparent 1px), linear-gradient(90deg, #001A38 1px, transparent 1px)', backgroundSize: '4rem 4rem' }}>
+            </div>
 
-                return (
-                    <motion.div
-                        key={i}
-                        className="absolute top-1/2 left-1/2 rounded-full border border-white/10"
-                        style={{ width: radius * 2, height: radius * 2, x: "-50%", y: "-50%" }}
-                        animate={{ rotate: 360 }}
-                        transition={{ duration, repeat: Infinity, ease: "linear", delay }}
-                    >
-                        <motion.div
-                            animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-                            transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
-                            className="absolute top-0 left-1/2 w-3 h-3 bg-blue-400 rounded-full shadow-[0_0_15px_rgba(96,165,250,0.8)] -translate-x-1/2 -translate-y-1/2"
-                        />
-                    </motion.div>
-                );
-            })}
-        </div>
-    );
-};
+            <div className="max-w-[1600px] mx-auto relative z-10">
 
-export default function SGISentinel() {
-    return (
-        <div className="min-h-screen flex flex-col bg-ghost text-navy-900 font-sans selection:bg-blue-500 selection:text-white overflow-hidden">
-            <LiveTicker />
-            <Navbar />
+                {/* HERO & ABOUT SECTION */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    className="mb-20 md:mb-32 max-w-5xl"
+                >
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+                        <span className="text-navy-900 font-bold uppercase tracking-widest text-sm">Corporate Intelligence</span>
+                    </div>
 
-            <main className="flex-grow pt-16 lg:pt-28">
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-navy-900 uppercase tracking-tighter leading-none mb-8">
+                        SGI <span className="text-steel">Sentinel</span>
+                    </h1>
 
-                <section className="relative z-10 max-w-[1600px] mx-auto w-full px-6 lg:px-12 py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                    <div className="w-24 h-1 bg-gold mb-8" />
 
-                    <div className="flex flex-col items-start text-left max-w-2xl">
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900/5 border border-navy-900/10 backdrop-blur-md mb-8">
-                            <span className="flex h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
-                            <span className="text-xs font-bold text-navy-800 uppercase tracking-widest">Active Defense Protocol</span>
-                        </div>
+                    <p className="text-navy-800 text-xl md:text-2xl font-medium leading-relaxed mb-6">
+                        <strong className="text-navy-900 font-black">SG International (SGI)</strong> is a premier Global Hybrid Merchant House operating at the critical intersection of national security, industrial infrastructure, and commodity markets. Headquartered in Washington D.C., with strategic operational hubs in Accra and Singapore, SGI bridges the gap between sovereign priorities and private sector execution.
+                    </p>
+                    {/* INTENSIVE FIX: Replaced raw quotes with &quot; */}
+                    <p className="text-navy-800/80 text-lg md:text-xl font-medium leading-relaxed">
+                        SGI functions as a &quot;Hard-Asset&quot; powerhouse, utilizing a trilateral operational model to align international capital with the high-growth resource markets of the Global South.
+                    </p>
+                </motion.div>
 
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-navy-900 mb-6 leading-[1.05]">
-                            SGI <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Sentinel</span>
-                        </h1>
-
-                        <p className="mt-2 text-lg md:text-xl text-navy-800/80 font-medium leading-relaxed max-w-xl">
-                            Military-grade maritime tracking, encrypted logistics communications, and global threat mitigation ensuring the absolute security of the Trilateral Corridor.
+                {/* THE TRILATERAL NEXUS */}
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="mb-32"
+                >
+                    <div className="mb-12">
+                        <h2 className="text-3xl md:text-4xl font-black text-navy-900 uppercase tracking-tighter mb-4">The SGI Trilateral Nexus</h2>
+                        <p className="text-navy-800/70 text-lg font-medium max-w-3xl">
+                            We eliminate geographic and regulatory friction through a 24/7 operational cycle spanning three continents:
                         </p>
                     </div>
 
-                    {/* Node Network Container - Now Deep Navy */}
-                    <div className="relative w-full h-[400px] lg:h-[600px] rounded-[2.5rem] bg-navy-900 shadow-2xl overflow-hidden flex items-center justify-center">
-                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(96,165,250,0.15)_0%,transparent_70%)]" />
-                        <NodeNetwork />
-                    </div>
-                </section>
-
-                <section className="relative z-20 max-w-[1600px] mx-auto w-full px-6 lg:px-12 py-20 lg:py-32 border-t border-navy-900/10">
-
-                    <div className="mb-16">
-                        <h2 className="text-3xl md:text-5xl font-black text-navy-900 tracking-tight mb-4">
-                            Core Security Infrastructure
-                        </h2>
-                        <p className="text-navy-800/70 text-lg font-medium">
-                            Protecting strategic assets across three continents.
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-
-                        <div className="bg-navy-900 p-8 lg:p-10 rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(0,26,56,0.3)] hover:-translate-y-2 transition-transform duration-500 flex flex-col h-full">
-                            <div className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-8 shrink-0">
-                                <Radar className="w-6 h-6 text-blue-400" />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {/* Washington D.C. */}
+                        <motion.div variants={itemVariants} className="bg-white border border-navy-900/10 p-8 md:p-10 rounded-[2rem] shadow-lg hover:shadow-xl transition-all group">
+                            <div className="w-14 h-14 bg-navy-900/5 text-navy-900 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-navy-900 group-hover:text-gold transition-colors">
+                                <ShieldCheck className="w-7 h-7" />
                             </div>
-                            <h3 className="text-2xl font-bold text-ghost mb-4">Real-Time Telemetry</h3>
-                            <p className="text-steel-light leading-relaxed flex-grow font-medium">
-                                Live AIS tracking of all maritime assets. SGI Sentinel ensures continuous oversight of commodity transit from origination in West Africa to liquidity hubs in Asia.
+                            <h3 className="text-sm font-bold text-steel uppercase tracking-widest mb-2">Policy & Standards</h3>
+                            <h4 className="text-2xl font-black text-navy-900 uppercase tracking-tight mb-4">Washington D.C.</h4>
+                            <p className="text-navy-800/70 font-medium leading-relaxed">
+                                Managing sovereign diplomacy and ensuring the highest levels of U.S. Federal regulatory compliance and transparency.
                             </p>
-                        </div>
+                        </motion.div>
 
-                        <div className="bg-navy-900 p-8 lg:p-10 rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(0,26,56,0.3)] hover:-translate-y-2 transition-transform duration-500 flex flex-col h-full">
-                            <div className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-8 shrink-0">
-                                <LockKeyhole className="w-6 h-6 text-blue-400" />
+                        {/* Accra */}
+                        <motion.div variants={itemVariants} className="bg-white border border-navy-900/10 p-8 md:p-10 rounded-[2rem] shadow-lg hover:shadow-xl transition-all group">
+                            <div className="w-14 h-14 bg-navy-900/5 text-navy-900 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-navy-900 group-hover:text-gold transition-colors">
+                                <MapPin className="w-7 h-7" />
                             </div>
-                            <h3 className="text-2xl font-bold text-ghost mb-4">Encrypted Routing</h3>
-                            <p className="text-steel-light leading-relaxed flex-grow font-medium">
-                                Financial and logistical data moving between Washington D.C., Accra, and Singapore is secured utilizing quantum-resistant cryptographic protocols.
+                            <h3 className="text-sm font-bold text-steel uppercase tracking-widest mb-2">Origination & Infrastructure</h3>
+                            <h4 className="text-2xl font-black text-navy-900 uppercase tracking-tight mb-4">Accra</h4>
+                            <p className="text-navy-800/70 font-medium leading-relaxed">
+                                Serving as a primary commercial gateway to the African Continental Free Trade Area (AfCFTA) ecosystem through physical asset management and regional logistics.
                             </p>
-                        </div>
+                        </motion.div>
 
-                        <div className="bg-navy-900 p-8 lg:p-10 rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(0,26,56,0.3)] hover:-translate-y-2 transition-transform duration-500 flex flex-col h-full">
-                            <div className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-8 shrink-0">
-                                <Shield className="w-6 h-6 text-blue-400" />
+                        {/* Singapore */}
+                        <motion.div variants={itemVariants} className="bg-white border border-navy-900/10 p-8 md:p-10 rounded-[2rem] shadow-lg hover:shadow-xl transition-all group">
+                            <div className="w-14 h-14 bg-navy-900/5 text-navy-900 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-navy-900 group-hover:text-gold transition-colors">
+                                <Globe2 className="w-7 h-7" />
                             </div>
-                            <h3 className="text-2xl font-bold text-ghost mb-4">Threat Mitigation</h3>
-                            <p className="text-steel-light leading-relaxed flex-grow font-medium">
-                                Proactive intelligence gathering to anticipate and neutralize physical and digital threats to our sovereign infrastructure.
+                            <h3 className="text-sm font-bold text-steel uppercase tracking-widest mb-2">Market Execution</h3>
+                            <h4 className="text-2xl font-black text-navy-900 uppercase tracking-tight mb-4">Singapore</h4>
+                            <p className="text-navy-800/70 font-medium leading-relaxed">
+                                Providing real-time price discovery, sophisticated hedging, and financial liquidity for global trade.
                             </p>
-                        </div>
+                        </motion.div>
+                    </div>
+                </motion.div>
+
+                {/* CORE CAPABILITIES (Infographic Tiles) */}
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-100px" }}
+                >
+                    <div className="mb-12">
+                        <h2 className="text-3xl md:text-4xl font-black text-navy-900 uppercase tracking-tighter">Core Capabilities</h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                        {/* Energy Tile */}
+                        <motion.div variants={itemVariants} className="bg-navy-900 p-8 md:p-12 rounded-[2rem] shadow-2xl relative overflow-hidden group">
+                            <div className="absolute -right-6 -top-6 text-white/5 group-hover:text-white/10 transition-colors">
+                                <Zap className="w-48 h-48" />
+                            </div>
+                            <div className="relative z-10">
+                                <div className="w-16 h-16 bg-gold text-navy-900 rounded-2xl flex items-center justify-center mb-8 shadow-lg">
+                                    <Anchor className="w-8 h-8" />
+                                </div>
+                                <h3 className="text-2xl font-black text-ghost uppercase tracking-tighter mb-4 leading-tight">Energy & Defense Logistics</h3>
+                                {/* INTENSIVE FIX: Replaced raw quotes with &quot; */}
+                                <p className="text-steel-light/80 font-medium leading-relaxed">
+                                    SGI is a specialized provider of refined petroleum products, including EN590 (ULSD), JP-8, Jet A-1, and Naval Distillate (F-76). We apply defense-grade logistics to ensure a secure &quot;Chain of Custody&quot; for energy assets, supported by our proprietary SGI Sentinel transparency protocol.
+                                </p>
+                            </div>
+                        </motion.div>
+
+                        {/* Agri-Business Tile */}
+                        <motion.div variants={itemVariants} className="bg-navy-900 p-8 md:p-12 rounded-[2rem] shadow-2xl relative overflow-hidden group">
+                            <div className="absolute -right-6 -top-6 text-white/5 group-hover:text-white/10 transition-colors">
+                                <Sprout className="w-48 h-48" />
+                            </div>
+                            <div className="relative z-10">
+                                <div className="w-16 h-16 bg-gold text-navy-900 rounded-2xl flex items-center justify-center mb-8 shadow-lg">
+                                    <Sprout className="w-8 h-8" />
+                                </div>
+                                <h3 className="text-2xl font-black text-ghost uppercase tracking-tighter mb-4 leading-tight">Agri-Business & Food Security</h3>
+                                <p className="text-steel-light/80 font-medium leading-relaxed">
+                                    We lead strategic growth initiatives in the global trade of energy and agricultural products. By bridging national ambition with international capital, SGI facilitates large-scale sovereign frameworks—such as our 10-year agricultural export agreement with Ukraine—to ensure regional and global food security.
+                                </p>
+                            </div>
+                        </motion.div>
+
+                        {/* Infrastructure Tile */}
+                        <motion.div variants={itemVariants} className="bg-navy-900 p-8 md:p-12 rounded-[2rem] shadow-2xl relative overflow-hidden group">
+                            <div className="absolute -right-6 -top-6 text-white/5 group-hover:text-white/10 transition-colors">
+                                <Building2 className="w-48 h-48" />
+                            </div>
+                            <div className="relative z-10">
+                                <div className="w-16 h-16 bg-gold text-navy-900 rounded-2xl flex items-center justify-center mb-8 shadow-lg">
+                                    <Building2 className="w-8 h-8" />
+                                </div>
+                                <h3 className="text-2xl font-black text-ghost uppercase tracking-tighter mb-4 leading-tight">Infrastructure & SGI Capital</h3>
+                                {/* INTENSIVE FIX: Replaced raw quotes with &quot; and apostrophe with &apos; */}
+                                <p className="text-steel-light/80 font-medium leading-relaxed">
+                                    Through Public-Private Partnerships (PPP), we invest in the &quot;hard assets&quot; of trade: modular refineries, industrial-scale grain silos, and bonded warehouses. These projects are designed to strengthen Africa&apos;s competitive positioning as a predictable and opportunity-rich investment destination.
+                                </p>
+                            </div>
+                        </motion.div>
 
                     </div>
-                </section>
+                </motion.div>
 
-            </main>
+                {/* CLOSING BANNER */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+                    className="mt-24 pt-12 border-t border-navy-900/10 text-center"
+                >
+                    <h3 className="text-xl md:text-3xl font-black text-navy-900 uppercase tracking-tighter leading-tight flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4">
+                        <span>Bridging Standards.</span>
+                        <span className="hidden md:block w-2 h-2 rounded-full bg-gold"></span>
+                        <span>Powering AfCFTA.</span>
+                        <span className="hidden md:block w-2 h-2 rounded-full bg-gold"></span>
+                        <span className="text-steel">Delivering Sovereignty.</span>
+                    </h3>
+                </motion.div>
+
+            </div>
         </div>
     );
 }
