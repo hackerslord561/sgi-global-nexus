@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 
+module.exports = {
+    allowedDevOrigins: ['172.20.10.3'],
+}
+
 const nextConfig: NextConfig = {
     async headers() {
         return [
