@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
     },
     // This points Google directly to your sitemap
-    sitemap: 'https://sregya.com/sitemap.xml',
+    sitemap: 'https://sremgya.com/sitemap.xml',
   };
 }
