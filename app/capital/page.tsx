@@ -85,8 +85,6 @@ export default function CapitalPage() {
     const [activeModal, setActiveModal] = useState<number | null>(null);
     const [isClient, setIsClient] = useState(false);
 
-    // INTENSIVE FIX: Added a micro-timeout to offload the state update to the next event tick
-    // This bypasses the strict ESLint cascading render warning completely.
     useEffect(() => {
         const timer = setTimeout(() => setIsClient(true), 50);
         return () => clearTimeout(timer);
@@ -285,7 +283,7 @@ export default function CapitalPage() {
                             {marketInsights.map((insight, index) => (
                                 <div key={insight.id} className="bg-white border border-navy-900/10 rounded-[1.5rem] p-8 shadow-lg hover:shadow-xl transition-all flex flex-col justify-between group">
                                     <div>
-                                        <span className="text-[10px] font-bold text-gold uppercase tracking-widest mb-4 block">Update {insight.id}</span>
+                                        {/* INTENSIVE FIX: Removed the "Update X" text */}
                                         <h3 className="text-xl font-black text-navy-900 leading-tight mb-2 group-hover:text-gold transition-colors">{insight.title}</h3>
                                         <p className="text-xs font-bold text-steel uppercase tracking-wide mb-4">{insight.subtitle}</p>
                                         <p className="text-sm font-medium text-navy-800/70 leading-relaxed line-clamp-4 mb-6">
@@ -340,8 +338,9 @@ export default function CapitalPage() {
                                 {/* SCROLL PHYSICS */}
                                 <div className="flex-1 overflow-y-auto p-6 pt-20 md:p-12 md:pt-20 overscroll-contain">
                                     <div className="mb-8 pr-10">
-                    <span className="text-xs font-bold text-gold uppercase tracking-widest mb-3 block">
-                      Market Intelligence // Update {marketInsights[activeModal].id}
+                                        {/* INTENSIVE FIX: Cleaned to only say "Market Intelligence" */}
+                                        <span className="text-xs font-bold text-gold uppercase tracking-widest mb-3 block">
+                      Market Intelligence
                     </span>
                                         <h2 className="text-3xl md:text-4xl font-black text-navy-900 leading-tight mb-4">
                                             {marketInsights[activeModal].title}
